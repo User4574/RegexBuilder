@@ -1,43 +1,29 @@
-require './lib/flags'
+require "../lib/flags"
+require "../lib/reps"
+require "../lib/classes"
+require "../lib/anchors"
+require "../lib/captures"
 
 module RegexBuilder
   class Builder
     def initialize(&block)
-      @regex = ''
+      @regex = ""
       @flags = {
         case_insensitive: false,
         make_dot_match_newlines: false,
         ignore_whitespace: false,
         perform_substitutions_only_once: false
       }
+      @inclass = 0
 
       instance_eval(&block)
     end
 
     include RegexBuilder::Flags
-
-    def start_of_line
-      @regex += '^'
-    end
-
-    def end_of_line
-      @regex += '$'
-    end
-
-    def digit
-      @regex += '\d'
-    end
-
-    def one_or_more(&thing)
-      instance_eval(&thing)
-      @regex += '+'
-    end
-
-    def maybe(&thing)
-      @regex += '('
-      instance_eval(&thing)
-      @regex += ')?'
-    end
+    include RegexBuilder::Reps
+    include RegexBuilder::Classes
+    include RegexBuilder::Anchors
+    include RegexBuilder::Captures
 
     def regex(chars)
       @regex += chars
@@ -50,16 +36,19 @@ module RegexBuilder
       @regex += chars
     end
 
-    def to_regex
-      Regexp.new(@regex)
+    alias r regex
+    alias l literal
+
+    def to_regexp
+      Regexp.new(@regex, options)
     end
 
     def to_s
-      "/#{@regex}/#{options}"
+      "/#{@regex}/#{options_s}"
     end
 
     def =~(str)
-      str =~ to_regex
+      str =~ to_regexp
     end
   end
 end

@@ -1,7 +1,11 @@
 require "../lib/regexbuilder"
 
 def chars
-  one_or_more { regex '[a-z]' }
+  one_or_more { character_class {
+    r 'a-y'
+    intersect
+    character_class(true) { r 'A-Z' }
+  } }
 end
 
 def parens
@@ -14,11 +18,11 @@ r = RegexBuilder::Builder.new do
   case_insensitive
 
   start_of_line
-  one_or_more { digit }
+  one_or_more { decdigit }
   literal ': '
   chars
   maybe(false) { parens }
-  rep(..) { literal '.' }
+  rep(..4) { literal '.' }
   end_of_line
 end
 
