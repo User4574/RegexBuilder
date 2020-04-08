@@ -1,0 +1,7 @@
+h1. Regex Builder
+
+p. An incomplete Ruby DSL for writing Regexps.
+
+h2. Why?
+
+p. Because I have a Ruby DSL habit.
