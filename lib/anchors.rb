@@ -27,5 +27,29 @@ module RegexBuilder
     def non_word_boundary
       @regex += '\B'
     end
+
+    def positive_lookahead_assertion(&block)
+      @regex += '(?='
+      instance_eval(&block)
+      @regex += ')'
+    end
+
+    def negative_lookahead_assertion(&block)
+      @regex += '(?!'
+      instance_eval(&block)
+      @regex += ')'
+    end
+
+    def positive_lookbehind_assertion(&block)
+      @regex += '(?<='
+      instance_eval(&block)
+      @regex += ')'
+    end
+
+    def negative_lookbehind_assertion(&block)
+      @regex += '(?<!'
+      instance_eval(&block)
+      @regex += ')'
+    end
   end
 end

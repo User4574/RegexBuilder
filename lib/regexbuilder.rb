@@ -3,6 +3,7 @@ require "../lib/reps"
 require "../lib/classes"
 require "../lib/anchors"
 require "../lib/captures"
+require "../lib/properties"
 
 module RegexBuilder
   class Builder
@@ -24,15 +25,26 @@ module RegexBuilder
     include RegexBuilder::Classes
     include RegexBuilder::Anchors
     include RegexBuilder::Captures
+    include RegexBuilder::Properties
 
     def regex(chars)
       @regex += chars
     end
 
     def literal(chars)
+      chars.gsub!(/\\/, '\\')
+      chars.gsub!(/\^/, '\^')
+      chars.gsub!(/\$/, '\$')
       chars.gsub!(/\./, '\.')
+      chars.gsub!(/\|/, '\|')
+      chars.gsub!(/\?/, '\?')
+      chars.gsub!(/\*/, '\*')
+      chars.gsub!(/\+/, '\+')
       chars.gsub!(/\(/, '\(')
       chars.gsub!(/\)/, '\)')
+      chars.gsub!(/\[/, '\[')
+      chars.gsub!(/\{/, '\{')
+      chars.gsub!(/\]/, '\]') if @inclass > 0
       @regex += chars
     end
 

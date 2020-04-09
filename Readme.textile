@@ -1,7 +1,13 @@
 h1. Regex Builder
 
-p. An incomplete Ruby DSL for writing Regexps.
+p. A Ruby DSL for building Regexps in Quasienglish.
 
 h2. Why?
 
 p. Because I have a Ruby DSL habit.
+
+h2. TODO
+
+* More examples
+* Tests
+* Gem

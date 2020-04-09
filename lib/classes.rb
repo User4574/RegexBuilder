@@ -1,7 +1,7 @@
 module RegexBuilder
-  class NotInClassError < Exception; end
-
   module Classes
+    class NotInClassError < Exception; end
+
     def character_class(inverted = false, &block)
       @regex += inverted ? '[^' : '['
       @inclass += 1
@@ -14,7 +14,7 @@ module RegexBuilder
       if @inclass > 0
         @regex += '&&'
       else
-        raise RegexBuilder::NotInClassError
+        raise NotInClassError
       end
     end
 

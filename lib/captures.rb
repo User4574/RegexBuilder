@@ -6,6 +6,8 @@ module RegexBuilder
       @regex += ')'
     end
 
+    alias group capture
+
     def backreference(name)
       @regex += '\\'
       case name
@@ -14,6 +16,10 @@ module RegexBuilder
       when String
         @regex += "k<#{name}>"
       end
+    end
+
+    def alternative
+      @regex += '|'
     end
   end
 end
