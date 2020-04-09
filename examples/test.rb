@@ -18,7 +18,7 @@ r = RegexBuilder::Builder.new do
   case_insensitive
 
   start_of_line
-  one_or_more { decdigit }
+  one_or_more { digit }
   literal ': '
   chars
   maybe(false) { parens }

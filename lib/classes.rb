@@ -11,11 +11,8 @@ module RegexBuilder
     end
 
     def intersect
-      if @inclass > 0
-        @regex += '&&'
-      else
-        raise NotInClassError
-      end
+      raise NotInClassError unless @inclass > 0
+      @regex += '&&'
     end
 
     def any
@@ -30,11 +27,11 @@ module RegexBuilder
       @regex += '\W'
     end
 
-    def decdigit
+    def digit
       @regex += '\d'
     end
 
-    def non_decdigit
+    def non_digit
       @regex += '\D'
     end
 
@@ -58,59 +55,73 @@ module RegexBuilder
       @regex += '\R'
     end
 
-    def alnum
+    def posix_alnum
+      raise NotInClassError unless @inclass > 0
       @regex += '[:alnum:]'
     end
 
-    def alpha
+    def posix_alpha
+      raise NotInClassError unless @inclass > 0
       @regex += '[:alpha:]'
     end
 
-    def blank
+    def posix_blank
+      raise NotInClassError unless @inclass > 0
       @regex += '[:blank:]'
     end
 
-    def cntrl
+    def posix_cntrl
+      raise NotInClassError unless @inclass > 0
       @regex += '[:cntrl:]'
     end
 
-    def digit
+    def posix_digit
+      raise NotInClassError unless @inclass > 0
       @regex += '[:digit:]'
     end
 
-    def graph
+    def posix_graph
+      raise NotInClassError unless @inclass > 0
       @regex += '[:graph:]'
     end
 
-    def lower
+    def posix_lower
+      raise NotInClassError unless @inclass > 0
       @regex += '[:lower:]'
     end
 
-    def print
+    def posix_print
+      raise NotInClassError unless @inclass > 0
       @regex += '[:print:]'
     end
 
-    def punct
+    def posix_punct
+      raise NotInClassError unless @inclass > 0
       @regex += '[:punct:]'
     end
 
-    def space
+    def posix_space
+      raise NotInClassError unless @inclass > 0
       @regex += '[:space:]'
     end
 
-    def upper
+    def posix_upper
+      raise NotInClassError unless @inclass > 0
       @regex += '[:upper:]'
     end
 
-    def xdigit
+    def posix_xdigit
+      raise NotInClassError unless @inclass > 0
       @regex += '[:xdigit:]'
     end
 
-    def word
+    def posix_word
+      raise NotInClassError unless @inclass > 0
       @regex += '[:word:]'
     end
 
-    def ascii
+    def posix_ascii
+      raise NotInClassError unless @inclass > 0
       @regex += '[:ascii:]'
     end
   end

@@ -35,7 +35,7 @@ module RegexBuilder
       chars.gsub!(/\\/, '\\')
       chars.gsub!(/\^/, '\^')
       chars.gsub!(/\$/, '\$')
-      chars.gsub!(/\./, '\.')
+      chars.gsub!(/\./, '\.') unless @inclass > 0
       chars.gsub!(/\|/, '\|')
       chars.gsub!(/\?/, '\?')
       chars.gsub!(/\*/, '\*')
