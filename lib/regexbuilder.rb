@@ -1,9 +1,9 @@
-require "../lib/flags"
-require "../lib/reps"
-require "../lib/classes"
-require "../lib/anchors"
-require "../lib/captures"
-require "../lib/properties"
+require "regexbuilder/flags"
+require "regexbuilder/reps"
+require "regexbuilder/classes"
+require "regexbuilder/anchors"
+require "regexbuilder/captures"
+require "regexbuilder/properties"
 
 module RegexBuilder
   class Builder

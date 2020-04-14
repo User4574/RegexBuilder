@@ -1,4 +1,4 @@
-require "../lib/regexbuilder"
+require "regexbuilder"
 
 r = RegexBuilder::Builder.new do
   maybe { literal 'a' } #=> /(a)?/

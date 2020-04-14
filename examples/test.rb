@@ -1,4 +1,4 @@
-require "../lib/regexbuilder"
+require "regexbuilder"
 
 def chars
   one_or_more { character_class {
